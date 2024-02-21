@@ -26,10 +26,13 @@ export class Article {
               <span aria-hidden="true" class="absolute inset-0"></span>
               ${this.name}
             </a>
+       
           </h3>
           <p class="mt-1 text-sm text-gray-500">${this.category}</p>
+         
         </div>
         <p class="text-sm font-medium text-gray-900">${this.price}€</p>
+        <i class="fa-solid fa-cart-shopping"></i>
       </div>
       </div>
       `;

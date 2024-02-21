@@ -1,3 +1,7 @@
 body {
   font-family: "Kode Mono", monospace;
 }
+
+a {
+  cursor: pointer;
+}
