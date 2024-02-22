@@ -19,48 +19,6 @@ function closeCart() {
   cart.classList.add("translate-x-0");
 }
 
-//ajout article
-function addToCart() {
-  openCart();
-  cartItemContainer.innerHTML += `<li class="flex py-6">
-  <div
-    class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
-  >
-    <img
-      src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
-      alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
-      class="h-full w-full object-cover object-center"
-    />
-  </div>
-
-  <div class="ml-4 flex flex-1 flex-col">
-    <div>
-      <div class="flex justify-between text-base font-medium text-gray-900">
-        <h3>
-          <a href="#">Throwback Hip Bag</a>
-        </h3>
-        <p class="ml-4">$90.00</p>
-      </div>
-      <p class="mt-1 text-sm text-gray-500">Salmon</p>
-    </div>
-    <div class="flex flex-1 items-end justify-between text-sm">
-      <p class="text-gray-500">Qty 1</p>
-
-      <div class="flex">
-        <button
-          type="button"
-          class="font-medium text-indigo-600 hover:text-indigo-500"
-        >
-          Remove
-        </button>
-      </div>
-    </div>
-  </div>
-</li>
-
-    `;
-}
-
 // ! gestion des catégories
 const categoryALL = document.querySelector("#btn-accueil");
 const categoryPLA = document.querySelector("#btn-pla");
@@ -91,6 +49,21 @@ function displayCards(array) {
     );
     card.displayCard();
   });
+  addArticleToCard();
+}
+
+function displayCart(array) {
+  cartItemContainer.innerHTML = "";
+  array.forEach((article) => {
+    const card = new Article(
+      article.id,
+      article.name,
+      article.category,
+      article.price,
+      article.image
+    );
+    card.addToCart();
+  });
 }
 
 // ! gestion de l'affichage des catégories
@@ -115,5 +88,37 @@ categoryABS.addEventListener("click", () => {
 
 // Affiche des cartes
 
-// console.log(plaArticleArray);
-window.addEventListener("DOMContentLoaded", displayCards(data));
+//! Attente du chargement du DOM
+window.addEventListener("DOMContentLoaded", () => {
+  displayCards(data);
+});
+
+function addArticleToCard() {
+  //Gestion ajout au panier
+  const addToCartIcon = document.querySelectorAll(".cart-icon");
+  let addToCartIconArray = Array.from(addToCartIcon);
+  addToCartIconArray.forEach((icon) => {
+    icon.addEventListener("click", function (e) {
+      const cartContainer = e.target.closest("div");
+
+      const cardId = cartContainer.getAttribute("data-cardid");
+
+      const clickedCard = data.find((item) => item.id == cardId);
+      console.log("clickedCard", clickedCard);
+      // addToCart();
+      cartArray.push(clickedCard);
+
+      const totalAmountContainer = document.querySelector("#total-amount");
+      console.log("totalAmount", totalAmountContainer);
+
+      totalAmountContainer.innerHTML = "";
+      let totalAMount = 0;
+      cartArray.forEach((article) => {
+        totalAMount += +article.price;
+      });
+      totalAmountContainer.innerHTML = `${totalAMount}€`;
+      openCart();
+      displayCart(cartArray);
+    });
+  });
+}

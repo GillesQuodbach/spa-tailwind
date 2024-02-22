@@ -9,7 +9,7 @@ export class Article {
 
   displayCard() {
     const cardContainer = document.querySelector("#card-container");
-    cardContainer.innerHTML += `<div id="${this.id}" class="group relative">
+    cardContainer.innerHTML += `<div id="${this.id}" cart-container class="group relative">
       <div
         class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
       >
@@ -19,11 +19,10 @@ export class Article {
           class="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>
-      <div class="mt-4 flex justify-between">
+      <div data-cardid="${this.id}" class="mt-4 flex justify-between">
         <div>
           <h3 class="text-sm text-gray-700">
-            <a href="#">
-              <span aria-hidden="true" class="absolute inset-0"></span>
+            <a>
               ${this.name}
             </a>
        
@@ -32,11 +31,54 @@ export class Article {
          
         </div>
         <p class="text-sm font-medium text-gray-900">${this.price}€</p>
-        <i class="fa-solid fa-cart-shopping"></i>
+        <i class="cart-icon fa-solid fa-cart-shopping"></i>
       </div>
       </div>
       `;
   }
+
+  //ajout article
+  addToCart() {
+    const cartItemContainer = document.querySelector("#cart-item-container");
+    cartItemContainer.innerHTML += `<li id="${this.id}" class="flex py-6">
+  <div
+    class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
+  >
+    <img
+      src="${this.image}"
+      alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+      class="h-full w-full object-cover object-center"
+    />
+  </div>
+
+  <div class="ml-4 flex flex-1 flex-col">
+    <div>
+      <div class="flex justify-between text-base font-medium text-gray-900">
+        <h3>
+          <a href="#">${this.name}</a>
+        </h3>
+        <p class="ml-4">${this.price}</p>
+      </div>
+      <p class="mt-1 text-sm text-gray-500">Salmon</p>
+    </div>
+    <div class="flex flex-1 items-end justify-between text-sm">
+      <p class="text-gray-500">Qty 1</p>
+
+      <div class="flex">
+        <button
+          type="button"
+          class="font-medium text-indigo-600 hover:text-indigo-500"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</li>
+
+    `;
+  }
+
   modifyName(newName) {
     this.name = newName;
   }
