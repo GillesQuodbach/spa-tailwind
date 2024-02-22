@@ -95,30 +95,51 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function addArticleToCard() {
   //Gestion ajout au panier
+
   const addToCartIcon = document.querySelectorAll(".cart-icon");
   let addToCartIconArray = Array.from(addToCartIcon);
   addToCartIconArray.forEach((icon) => {
     icon.addEventListener("click", function (e) {
       const cartContainer = e.target.closest("div");
-
       const cardId = cartContainer.getAttribute("data-cardid");
 
       const clickedCard = data.find((item) => item.id == cardId);
-      console.log("clickedCard", clickedCard);
-      // addToCart();
-      cartArray.push(clickedCard);
+      const existingArticleId = cartArray.findIndex(
+        (article) => article.id == clickedCard.id
+      );
+      if (existingArticleId !== -1) {
+        cartArray[existingArticleId].quantity++;
+      } else {
+        clickedCard.quantity = 1;
+        cartArray.push(clickedCard);
+      }
 
       const totalAmountContainer = document.querySelector("#total-amount");
       console.log("totalAmount", totalAmountContainer);
 
       totalAmountContainer.innerHTML = "";
       let totalAMount = 0;
+
       cartArray.forEach((article) => {
         totalAMount += +article.price;
       });
       totalAmountContainer.innerHTML = `${totalAMount}€`;
+      console.log(cartArray);
       openCart();
       displayCart(cartArray);
+
+      const quantityContainer = document.querySelectorAll(".item-quantity");
+      console.log(quantityContainer);
+      const quantityContainerArray = Array.from(quantityContainer);
+
+      quantityContainerArray.forEach((qty) => {
+        const currentId = qty.getAttribute("id");
+        const currentArticle = cartArray.find((item) => item.id === +currentId);
+        console.log(currentArticle.quantity);
+        qty.innerHTML = `Qty: ${currentArticle.quantity}`;
+      });
+      // const currentArticleQuantity = currentArticle.quantity;
+      // quantityContainer.innerHTML = `Qty: ${currentArticleQuantity}`;
     });
   });
 }

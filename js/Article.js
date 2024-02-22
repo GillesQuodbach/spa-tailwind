@@ -40,6 +40,7 @@ export class Article {
   //ajout article
   addToCart() {
     const cartItemContainer = document.querySelector("#cart-item-container");
+    const articleId = this.id;
     cartItemContainer.innerHTML += `<li id="${this.id}" class="flex py-6">
   <div
     class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
@@ -59,10 +60,10 @@ export class Article {
         </h3>
         <p class="ml-4">${this.price}</p>
       </div>
-      <p class="mt-1 text-sm text-gray-500">Salmon</p>
+   
     </div>
     <div class="flex flex-1 items-end justify-between text-sm">
-      <p class="text-gray-500">Qty 1</p>
+      <p id="${articleId}" class="item-quantity text-gray-500"></p>
 
       <div class="flex">
         <button
