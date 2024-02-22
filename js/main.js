@@ -49,7 +49,6 @@ function displayCards(array) {
     );
     card.displayCard();
   });
-  addArticleToCard();
 }
 
 function displayCart(array) {
@@ -91,6 +90,7 @@ categoryABS.addEventListener("click", () => {
 //! Attente du chargement du DOM
 window.addEventListener("DOMContentLoaded", () => {
   displayCards(data);
+  addArticleToCard();
 });
 
 function addArticleToCard() {
@@ -124,22 +124,60 @@ function addArticleToCard() {
         totalAMount += +article.price;
       });
       totalAmountContainer.innerHTML = `${totalAMount}€`;
-      console.log(cartArray);
+      console.log("cartArray", cartArray);
       openCart();
       displayCart(cartArray);
 
-      const quantityContainer = document.querySelectorAll(".item-quantity");
-      console.log(quantityContainer);
-      const quantityContainerArray = Array.from(quantityContainer);
+      function qtyUpdate() {
+        const quantityContainer = document.querySelectorAll(".item-quantity");
+        // console.log(quantityContainer);
+        const quantityContainerArray = Array.from(quantityContainer);
 
-      quantityContainerArray.forEach((qty) => {
-        const currentId = qty.getAttribute("id");
-        const currentArticle = cartArray.find((item) => item.id === +currentId);
-        console.log(currentArticle.quantity);
-        qty.innerHTML = `Qty: ${currentArticle.quantity}`;
+        quantityContainerArray.forEach((qty) => {
+          const currentId = qty.getAttribute("id");
+          const currentArticle = cartArray.find(
+            (item) => item.id === +currentId
+          );
+          // console.log(currentArticle.quantity);
+          qty.innerHTML = `Qty: ${currentArticle.quantity}`;
+        });
+      }
+      qtyUpdate();
+      // Gestion de suppression d'article
+      const removeBtn = document.querySelectorAll(".btn-remove");
+      // console.log("removeBTN", removeBtn);
+      let removeBtnArray = Array.from(removeBtn);
+
+      // ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+      removeBtnArray.forEach((btn) => {
+        const currentId = btn.getAttribute("id");
+
+        btn.addEventListener("click", function (e) {
+          const currentId = btn.getAttribute("id");
+          const articleIndexToRemove = cartArray.findIndex(
+            (el) => el.id == currentId
+          );
+          console.log("articleIndexToRemove before", articleIndexToRemove);
+          console.log("cartArray before", cartArray);
+
+          if (articleIndexToRemove !== -1) {
+            const articleToRemove = cartArray[articleIndexToRemove];
+            if (articleToRemove.quantity > 1) {
+              articleToRemove.quantity--;
+              console.log("quantité modifiée");
+              console.log(articleToRemove);
+            } else {
+              cartArray.splice(articleIndexToRemove, 1);
+              console.log("article supprimé");
+            }
+          }
+
+          console.log("cartArray after", cartArray);
+          displayCart(cartArray);
+          qtyUpdate();
+        });
       });
-      // const currentArticleQuantity = currentArticle.quantity;
-      // quantityContainer.innerHTML = `Qty: ${currentArticleQuantity}`;
     });
   });
 }

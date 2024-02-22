@@ -67,8 +67,9 @@ export class Article {
 
       <div class="flex">
         <button
+        id="${articleId}"
           type="button"
-          class="font-medium text-indigo-600 hover:text-indigo-500"
+          class="btn-remove font-medium text-indigo-600 hover:text-indigo-500"
         >
           Remove
         </button>
