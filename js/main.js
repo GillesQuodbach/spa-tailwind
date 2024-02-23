@@ -1,16 +1,5 @@
 import { data } from "../data/stock.js";
 import { Article } from "./Article.js";
-
-window.addEventListener("DOMContentLoaded", () => {
-  displayCards(data);
-  cartHandle();
-
-  btnOpenCart.addEventListener("click", openCart);
-
-  btnCloseCart.addEventListener("click", closeCart);
-
-  cart.addEventListener("click", closeCart);
-});
 const openCart = () => {
   cart.classList.remove("translate-x-0");
 };
@@ -18,6 +7,15 @@ const openCart = () => {
 const closeCart = () => {
   cart.classList.add("translate-x-0");
 };
+window.addEventListener("DOMContentLoaded", () => {
+  displayCards(data);
+  cartHandle();
+
+  btnOpenCart.addEventListener("click", openCart);
+
+  btnCloseCart.addEventListener("click", closeCart);
+});
+
 // ! gestion panier
 const overlay = document.querySelector("#cart-overlay");
 console.log(overlay);
@@ -79,16 +77,20 @@ function displayCart(array) {
 // ! gestion de l'affichage des catégories
 categoryALL.addEventListener("click", () => {
   displayCards(data);
+  cartHandle();
 });
 categoryPLA.addEventListener("click", () => {
   displayCards(plaArticleArray);
+  cartHandle();
 });
 
 categoryPETG.addEventListener("click", () => {
   displayCards(petgArticleArray);
+  cartHandle();
 });
 categoryABS.addEventListener("click", () => {
   displayCards(absArticleArray);
+  cartHandle();
 });
 
 function cartHandle() {
