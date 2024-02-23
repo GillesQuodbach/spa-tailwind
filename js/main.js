@@ -11,7 +11,7 @@ const closeCart = () => {
 window.addEventListener("DOMContentLoaded", () => {
   displayCards(data);
   cartHandle();
-
+  calcTotal();
   btnOpenCart.addEventListener("click", openCart);
 
   btnCloseCart.addEventListener("click", closeCart);
@@ -24,7 +24,7 @@ const btnCloseCart = document.querySelector("#btn-close-cart");
 const cart = document.querySelector("#cart-container");
 const cardContainer = document.querySelector("#card-container");
 const cartItemContainer = document.querySelector("#cart-item-container");
-const cartArray = [];
+let cartArray = [];
 
 // ! gestion des catégories
 const categoryALL = document.querySelector("#btn-accueil");
@@ -112,10 +112,6 @@ function cartHandle() {
         clickedCard.quantity = 1;
         cartArray.push(clickedCard);
       }
-
-      // console.log("totalAmount", totalAmountContainer);
-
-      // console.log("cartArray", cartArray);
       openCart();
       displayCart(cartArray);
       qtyUpdate();
@@ -126,11 +122,46 @@ function cartHandle() {
 
   // Gestion paiement
   const payBtn = document.querySelector("#pay-btn");
+  const payModal = document.querySelector("#confirm-modal");
+  const emptyCartModal = document.querySelector("#empty-cart-modal");
+  const emptyCartBtn = document.querySelector("#empty-btn");
+  const confirmBtn = document.querySelector("#confirm-btn");
+  const cancelBtn = document.querySelector("#cancel-btn");
+  const confirmCheckout = document.querySelector("#confirm-checkout");
+
+  // Empty Cart
+  emptyCartBtn.addEventListener("click", function (e) {
+    console.log("empty cart");
+    emptyCartModal.classList.add("translate-x-0");
+  });
+
+  // Confirm cart
+  // cancel checkout
+  cancelBtn.addEventListener("click", function (e) {
+    payModal.classList.add("translate-x-0");
+  });
+  // confirm checkout
+  confirmBtn.addEventListener("click", function (e) {
+    payModal.classList.add("translate-x-0");
+    cart.classList.add("translate-x-0");
+    cartArray = [];
+    calcTotal();
+    displayCart(cartArray);
+    setTimeout(() => {
+      confirmCheckout.classList.remove("translate-x-0");
+      setTimeout(() => {
+        confirmCheckout.classList.add("translate-x-0");
+      }, 2000);
+    }, 1000);
+  });
+
   payBtn.addEventListener("click", function (e) {
     if (cartArray.length === 0) {
-      alert("votre panier est vide");
+      // alert("votre panier est vide");
+      emptyCartModal.classList.remove("translate-x-0");
     } else {
-      alert("Merci pour votre commande");
+      // alert("Merci pour votre commande");
+      payModal.classList.remove("translate-x-0");
     }
   });
 }
