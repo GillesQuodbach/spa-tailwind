@@ -58,7 +58,7 @@ export class Article {
         <h3>
           <a href="#">${this.name}</a>
         </h3>
-        <p class="ml-4">${this.price}</p>
+        <p class="ml-4">${this.price}€/pc</p>
       </div>
    
     </div>

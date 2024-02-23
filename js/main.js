@@ -4,25 +4,29 @@ import { Article } from "./Article.js";
 window.addEventListener("DOMContentLoaded", () => {
   displayCards(data);
   cartHandle();
-});
 
+  btnOpenCart.addEventListener("click", openCart);
+
+  btnCloseCart.addEventListener("click", closeCart);
+
+  cart.addEventListener("click", closeCart);
+});
+const openCart = () => {
+  cart.classList.remove("translate-x-0");
+};
+
+const closeCart = () => {
+  cart.classList.add("translate-x-0");
+};
 // ! gestion panier
+const overlay = document.querySelector("#cart-overlay");
+console.log(overlay);
 const btnOpenCart = document.querySelector("#btn-open-cart");
 const btnCloseCart = document.querySelector("#btn-close-cart");
 const cart = document.querySelector("#cart-container");
 const cardContainer = document.querySelector("#card-container");
 const cartItemContainer = document.querySelector("#cart-item-container");
 const cartArray = [];
-
-btnOpenCart.addEventListener("click", openCart);
-function openCart() {
-  cart.classList.remove("translate-x-0");
-}
-
-btnCloseCart.addEventListener("click", closeCart);
-function closeCart() {
-  cart.classList.add("translate-x-0");
-}
 
 // ! gestion des catégories
 const categoryALL = document.querySelector("#btn-accueil");
@@ -109,21 +113,31 @@ function cartHandle() {
 
       //Montant total
       const totalAmountContainer = document.querySelector("#total-amount");
-      console.log("totalAmount", totalAmountContainer);
+      // console.log("totalAmount", totalAmountContainer);
 
       totalAmountContainer.innerHTML = "";
       let totalAMount = 0;
 
       cartArray.forEach((article) => {
-        totalAMount += +article.price;
+        totalAMount += +article.price * article.quantity;
       });
       totalAmountContainer.innerHTML = `${totalAMount}€`;
-      console.log("cartArray", cartArray);
+      // console.log("cartArray", cartArray);
       openCart();
       displayCart(cartArray);
       qtyUpdate();
       cartRemoveHandle();
     });
+  });
+
+  // Gestion paiement
+  const payBtn = document.querySelector("#pay-btn");
+  payBtn.addEventListener("click", function (e) {
+    if (cartArray.length === 0) {
+      alert("votre panier est vide");
+    } else {
+      alert("Merci pour votre commande");
+    }
   });
 }
 
@@ -131,18 +145,18 @@ function cartRemoveHandle() {
   // Gestion de suppression d'article
   const removeBtn = document.querySelectorAll(".btn-remove");
   let removeBtnArray = Array.from(removeBtn);
-  console.log("hello from remove");
+  // console.log("hello from remove");
   removeBtnArray.forEach((btn) => {
     btn.addEventListener("click", function (e) {
       const currentId = btn.getAttribute("id");
-      console.log(currentId);
+      // console.log(currentId);
       const articleArrayIndexToRemove = cartArray.findIndex(
         (el) => el.id == currentId
       );
-      console.log("articleIndexToRemove before", articleArrayIndexToRemove);
+      // console.log("articleIndexToRemove before", articleArrayIndexToRemove);
 
       const articleToRemove = cartArray[articleArrayIndexToRemove];
-      console.log(articleToRemove);
+      // console.log(articleToRemove);
       if (articleToRemove.quantity > 1) {
         articleToRemove.quantity--;
         qtyUpdate();
