@@ -31,8 +31,8 @@ export class Article {
          
         </div>
         <p class="text-sm font-medium text-gray-900">${this.price}€</p>
-        
-        <i class="fa-solid fa-cart-plus"></i>
+   
+        <i class="cart-icon fa-solid fa-cart-plus"></i>
       </div>
       </div>
       `;
