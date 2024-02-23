@@ -1,23 +1,25 @@
 import { data } from "../data/stock.js";
 import { Article } from "./Article.js";
 
-const openCart = () => {
-  cart.classList.remove("translate-x-0");
-};
+// ! gestion des données
+const categoryArray = [];
+data.forEach((article) => categoryArray.push(article.category));
+const setCategoryArray = new Set(categoryArray);
 
-const closeCart = () => {
-  cart.classList.add("translate-x-0");
-};
-window.addEventListener("DOMContentLoaded", () => {
-  displayCards(data);
-  cartHandle();
-  calcTotal();
-  btnOpenCart.addEventListener("click", openCart);
+let plaArticleArray = data.filter((article) => {
+  return article.category === "PLA";
+});
 
-  btnCloseCart.addEventListener("click", closeCart);
+let petgArticleArray = data.filter((article) => {
+  return article.category === "PETG";
+});
+
+let absArticleArray = data.filter((article) => {
+  return article.category === "ABS";
 });
 
 // ! gestion panier
+const categoriesContainer = document.querySelector("#categories-container");
 const overlay = document.querySelector("#cart-overlay");
 const btnOpenCart = document.querySelector("#btn-open-cart");
 const btnCloseCart = document.querySelector("#btn-close-cart");
@@ -32,49 +34,26 @@ const categoryPLA = document.querySelector("#btn-pla");
 const categoryPETG = document.querySelector("#btn-petg");
 const categoryABS = document.querySelector("#btn-abs");
 
-let plaArticleArray = data.filter((article) => {
-  return article.category === "PLA";
-});
+//! Gestion du paiement
+const payBtn = document.querySelector("#pay-btn");
+const payModal = document.querySelector("#confirm-modal");
+const emptyCartModal = document.querySelector("#empty-cart-modal");
+const emptyCartBtn = document.querySelector("#empty-btn");
+const confirmBtn = document.querySelector("#confirm-btn");
+const cancelBtn = document.querySelector("#cancel-btn");
+const confirmCheckout = document.querySelector("#confirm-checkout");
 
-let petgArticleArray = data.filter((article) => {
-  return article.category === "PETG";
-});
-
-let absArticleArray = data.filter((article) => {
-  return article.category === "ABS";
-});
-
-//Affichage des articles
-function displayCards(array) {
-  cardContainer.innerHTML = "";
-  array.forEach((article) => {
-    const card = new Article(
-      article.id,
-      article.name,
-      article.category,
-      article.price,
-      article.image
-    );
-    card.displayCard();
-  });
-}
-
-//Affichage article panier
-function displayCart(array) {
-  cartItemContainer.innerHTML = "";
-  array.forEach((article) => {
-    const card = new Article(
-      article.id,
-      article.name,
-      article.category,
-      article.price,
-      article.image
-    );
-    card.addToCart();
-  });
-}
-
-// ! gestion de l'affichage des catégories
+// ! gestion des événements
+//Affichage panier
+const openCart = () => {
+  cart.classList.remove("translate-x-0");
+};
+const closeCart = () => {
+  cart.classList.add("translate-x-0");
+};
+btnOpenCart.addEventListener("click", openCart);
+btnCloseCart.addEventListener("click", closeCart);
+// Bouton selection catégories
 categoryALL.addEventListener("click", () => {
   displayCards(data);
   cartHandle();
@@ -91,6 +70,47 @@ categoryPETG.addEventListener("click", () => {
 categoryABS.addEventListener("click", () => {
   displayCards(absArticleArray);
   cartHandle();
+});
+
+//! Fonctions
+//Affichage des articles
+function displayCards(array) {
+  cardContainer.innerHTML = "";
+  array.forEach((article) => {
+    const card = new Article(
+      article.id,
+      article.name,
+      article.category,
+      article.price,
+      article.image
+    );
+    card.displayCard();
+  });
+}
+
+function displayCart(array) {
+  cartItemContainer.innerHTML = "";
+  array.forEach((article) => {
+    const card = new Article(
+      article.id,
+      article.name,
+      article.category,
+      article.price,
+      article.image
+    );
+    card.addToCart();
+  });
+}
+
+//! Fonction principale
+window.addEventListener("DOMContentLoaded", () => {
+  // setCategoryArray.forEach((cat) => {
+  //   categoriesContainer.innerHTML += `<a  id="btn-pla" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Pièces ${cat}</a>`;
+  // });
+
+  displayCards(data);
+  cartHandle();
+  calcTotal();
 });
 
 function cartHandle() {
@@ -119,15 +139,6 @@ function cartHandle() {
       calcTotal();
     });
   });
-
-  // Gestion paiement
-  const payBtn = document.querySelector("#pay-btn");
-  const payModal = document.querySelector("#confirm-modal");
-  const emptyCartModal = document.querySelector("#empty-cart-modal");
-  const emptyCartBtn = document.querySelector("#empty-btn");
-  const confirmBtn = document.querySelector("#confirm-btn");
-  const cancelBtn = document.querySelector("#cancel-btn");
-  const confirmCheckout = document.querySelector("#confirm-checkout");
 
   // Empty Cart
   emptyCartBtn.addEventListener("click", function (e) {
