@@ -98,11 +98,7 @@
 						</div>
 						<div class="hidden sm:ml-6 sm:block">
 							<div id="categories-container" class="flex space-x-4">
-								<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-								<a id="btn-accueil" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Accueil</a>
-								<a  id="btn-pla" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Pièces PLA</a>
-								<a id="btn-petg" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Pièces PTEG</a>
-								<a id="btn-abs" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Pièces ABS</a>
+                <a id="btn-accueil" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Accueil</a>
 							</div>
 						</div>
 					</div>
@@ -112,30 +108,12 @@
 						
 							<i class="cart-icon fa-solid fa-cart-shopping fa-2xl"></i>
 						</button>
-		
-						<!-- Profile dropdown -->
-						
-		
-							<!--
-								Dropdown menu, show/hide based on menu state.
-		
-								Entering: "transition ease-out duration-100"
-									From: "transform opacity-0 scale-95"
-									To: "transform opacity-100 scale-100"
-								Leaving: "transition ease-in duration-75"
-									From: "transform opacity-100 scale-100"
-									To: "transform opacity-0 scale-95"
-							-->
-
 						</div>
 					</div>
 				</div>
 			</div>
-		
-			<!-- Mobile menu, show/hide based on menu state. -->
 			<div class="sm:hidden" id="mobile-menu">
 				<div class="space-y-1 px-2 pb-3 pt-2">
-					<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 					<a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
 					<a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
 					<a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
@@ -143,31 +121,9 @@
 				</div>
 			</div>
 		</nav>
-		<!-- ! SOUS CATEGORIE -->
-    <nav class="bg-gray-800">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        
-      </div>
-    </div>
-  </div>
-<!-- !================================ -->
-  <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="sm:hidden" id="mobile-menu">
-    <div class="space-y-1 px-2 pb-3 pt-2">
-      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-      <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
-    </div>
-  </div>
-</nav>
 
 <!-- ! MAIN CONTAINER -->
    <div class="bg-gray-300">
-    
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 ">
           <h2 class="text-4xl font-bold tracking-tight text-gray-900">Pièces en stock</h2>
       
@@ -184,31 +140,12 @@
     </div>
   <!-- ! ICI translate-x-0 -->
     <div id="cart-container" class="relative z-10  translate-x-0" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-        <!--
-          Background backdrop, show/hide based on slide-over state.
-      
-          Entering: "ease-in-out duration-500"
-            From: "opacity-0"
-            To: "opacity-100"
-          Leaving: "ease-in-out duration-500"
-            From: "opacity-100"
-            To: "opacity-0"
-        -->
+
         <div id="cart-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
       
         <div  class="fixed inset-0 overflow-hidden ">
           <div class="absolute inset-0 overflow-hidden ">
             <div   class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 ">
-              <!--
-                Slide-over panel, show/hide based on slide-over state.
-      
-                Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-                  From: "translate-x-full"
-                  To: "translate-x-0"
-                Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-                  From: "translate-x-0"
-                  To: "translate-x-full"
-              -->
               <div class="pointer-events-auto w-screen max-w-md ">
                 <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
                   <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
@@ -228,9 +165,7 @@
                     <div class="mt-8">
                       <div class="flow-root">
                         <ul id="cart-item-container" role="list" class="-my-6 divide-y divide-gray-200">
-                         
-      
-                          <!-- More products... -->
+                            <!-- ! ITEM PANIER -->
                         </ul>
                       </div>
                     </div>
@@ -246,13 +181,6 @@
                       <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Payer</a>
                     </div>
                     <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
-                      <!-- <p>
-                        or
-                        <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">
-                          Continue Shopping
-                          <span aria-hidden="true"> &rarr;</span>
-                        </button>
-                      </p> -->
                     </div>
                 </div>
                 </div>
@@ -262,30 +190,10 @@
         </div>
       </div>
       <div id="confirm-modal" class="relative z-10 translate-x-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!--
-          Background backdrop, show/hide based on modal state.
-      
-          Entering: "ease-out duration-300"
-            From: "opacity-0"
-            To: "opacity-100"
-          Leaving: "ease-in duration-200"
-            From: "opacity-100"
-            To: "opacity-0"
-        -->
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
       
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <!--
-              Modal panel, show/hide based on modal state.
-      
-              Entering: "ease-out duration-300"
-                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                To: "opacity-100 translate-y-0 sm:scale-100"
-              Leaving: "ease-in duration-200"
-                From: "opacity-100 translate-y-0 sm:scale-100"
-                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            -->
             <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div class="sm:flex sm:items-start">
@@ -311,30 +219,10 @@
         </div>
       </div>
       <div id="empty-cart-modal" class="relative z-10 translate-x-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!--
-          Background backdrop, show/hide based on modal state.
-      
-          Entering: "ease-out duration-300"
-            From: "opacity-0"
-            To: "opacity-100"
-          Leaving: "ease-in duration-200"
-            From: "opacity-100"
-            To: "opacity-0"
-        -->
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
       
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <!--
-              Modal panel, show/hide based on modal state.
-      
-              Entering: "ease-out duration-300"
-                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                To: "opacity-100 translate-y-0 sm:scale-100"
-              Leaving: "ease-in duration-200"
-                From: "opacity-100 translate-y-0 sm:scale-100"
-                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            -->
             <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div class="sm:flex sm:items-start">
@@ -359,30 +247,10 @@
         </div>
       </div>
       <div id="confirm-checkout" class="relative z-10 translate-x-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!--
-          Background backdrop, show/hide based on modal state.
-      
-          Entering: "ease-out duration-300"
-            From: "opacity-0"
-            To: "opacity-100"
-          Leaving: "ease-in duration-200"
-            From: "opacity-100"
-            To: "opacity-0"
-        -->
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
       
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <!--
-              Modal panel, show/hide based on modal state.
-      
-              Entering: "ease-out duration-300"
-                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                To: "opacity-100 translate-y-0 sm:scale-100"
-              Leaving: "ease-in duration-200"
-                From: "opacity-100 translate-y-0 sm:scale-100"
-                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            -->
             <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div class="sm:flex sm:items-start">

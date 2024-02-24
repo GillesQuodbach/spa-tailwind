@@ -9,7 +9,7 @@ export class Article {
 
   displayCard() {
     const cardContainer = document.querySelector("#card-container");
-    cardContainer.innerHTML += `<div id="${this.id}" cart-container class="group relative">
+    cardContainer.innerHTML += `<div id="${this.id}" cart-container class="group relative shadow-xl rounded-md">
       <div
         class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
       >
@@ -19,20 +19,19 @@ export class Article {
           class="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>
-      <div data-cardid="${this.id}" class="mt-4 flex justify-between">
-        <div>
+      <div data-cardid="${this.id}" class="mt-4 flex justify-between  p-1">
+        <div class="left-div">
           <h3 class="text-sm text-gray-700">
             <a>
               ${this.name}
             </a>
-       
           </h3>
           <p class="mt-1 text-sm text-gray-500">${this.category}</p>
-         
         </div>
+        <div></div>
         <p class="text-sm font-medium text-gray-900">${this.price}€</p>
    
-        <i class="cart-icon fa-solid fa-cart-plus"></i>
+        <i data-cardid="${this.id}" class="cart-icon fa-solid fa-cart-plus"></i>
       </div>
       </div>
       `;
