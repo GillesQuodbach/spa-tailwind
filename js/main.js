@@ -200,6 +200,7 @@ function cartRemoveHandle() {
       calcTotal();
       qtyUpdate();
     }
+    event.stopImmediatePropagation();
   });
 }
 
